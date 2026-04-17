@@ -655,6 +655,21 @@ background-position: 100% 50%;
     background: #22c55e;
 }
 
+.resume-message {
+    color: #cbd5e1;
+    margin: -10px 0 30px 24px;
+    max-width: 420px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+.resume-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .social-links {
     display: flex;
     gap: 20px;
@@ -734,7 +749,7 @@ background-position: 100% 50%;
         margin: 15px 0 25px 0;
     }
     
-    .contact-info, .email-box, .download-btn-contact {
+    .contact-info, .email-box, .download-btn-contact, .resume-message {
         margin-left: 0; /* Remove left margins on mobile */
         margin-bottom: 20px;
     }

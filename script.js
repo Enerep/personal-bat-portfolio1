@@ -42,6 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    const resumeRequestButton = document.querySelector('#resumeRequestBtn');
+    const resumeMessage = document.querySelector('#resumeMessage');
+
+    if (resumeRequestButton && resumeMessage) {
+        resumeRequestButton.addEventListener('click', function() {
+            resumeMessage.classList.add('visible');
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     
     // --- NEW: Certificate Slider ---
     const sliderWrapper = document.querySelector('.slider-wrapper');
