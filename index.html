@@ -3,272 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=20260903">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#111112">
+    <meta name="description" content="Bat-Ochir. Bat, for short. Software, AI, and a few personal projects.">
+    <title>Bat-Ochir — Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111112'/%3E%3Ctext x='14' y='46' fill='%23efefeb' font-family='Arial' font-size='43' font-weight='600'%3Eb%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20261015b">
+    <script src="script.js?v=20261015b" defer></script>
 </head>
 <body>
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="name">Bat Artur</h1>
-            <p class="subtitle">Recent graduate. </p>
-        </div>
-        
-        <!--BUTTONS-->
-        <div class="button-container">
-                <div class="btn-wrapper">
-                    <a href="#projects" class="btn btn-primary">View My Work &rarr;</a>
-                </div>
-                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-            </div>
-        <div class="arrow-container">
-            <a href="#projects" class="arrow" aria-label="Scroll to projects">&#x2193;</a>
-        </div>
+    <a class="skip-link" href="#work">Skip to work</a>
+    <header class="site-header">
+        <a class="wordmark" href="#intro" aria-label="Bat-Ochir, back to the beginning">Bat-Ochir<span aria-hidden="true">.</span></a>
+        <nav aria-label="Main navigation">
+            <a class="quiet-link" href="#work">Work</a>
+            <a class="quiet-link" href="mailto:batcontact.help@gmail.com?subject=R%C3%A9sum%C3%A9%20request" data-open-contact data-contact-reason="resume">Résumé <span aria-hidden="true">↗</span></a>
+        </nav>
     </header>
-
-
-        
-
-    <!--  sections here -->
-    <main id="about">
-        <section id="projects" class="placeholder-section">
-            <h2 class="section-title">Projects & Skills</h2>
-            <div class="projects-container">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <h3>DiceDecide</h3>
-                <p>A fun and simple decision-making web app that rolls a dice to help you choose. Built for a University App Contest, where it won 2nd place.</p>
-                <div class="skills">
-                    <span>Python</span>
-                    <span>API</span>
-                    <span>Figma</span>
+    <main>
+        <section class="intro" id="intro" aria-label="Introduction">
+            <div class="intro-sticky"><div class="intro-track">
+                <div class="intro-cover">
+                    <div class="hero-name-wrap"><h1 class="hero-name" aria-label="Bat-Ochir. Bat, for short."><span class="letter-mask" aria-hidden="true"><span class="letter" style="--delay:0ms">B</span></span><span class="letter-mask" aria-hidden="true"><span class="letter" style="--delay:100ms">A</span></span><span class="letter-mask" aria-hidden="true"><span class="letter" style="--delay:200ms">T</span></span></h1></div>
+                    <div class="cover-caption hero-enter" style="--delay:650ms"><p>Bat-Ochir.<br><span>Bat, for short.</span></p><a href="#intro-details" class="scroll-note"><span class="desktop-scroll-label">A little about me</span><span class="mobile-scroll-label">Keep scrolling</span><span class="direction-arrow" aria-hidden="true">→</span></a></div>
                 </div>
-                <div class="project-links">
-                    <a href="https://github.com/Enerep/App-Contest" target="_blank" class="link">View on GitHub</a>
+                <div class="intro-details" id="intro-details" tabindex="-1" aria-labelledby="intro-title">
+                    <div class="intro-copy reveal">
+                        <h2 id="intro-title">Hi, I’m Bat-Ochir.<br><span>Call me Bat.</span></h2>
+                        <p class="intro-statement">I write code and build side projects.</p>
+                        <p class="intro-personal">Also into markets, hip hop, basketball, volleyball,<br class="desktop-break"> and the occasional chess game. I speak four languages.</p>
+                        <div class="intro-links"><a class="line-link" href="#work">A few things I’ve made <span aria-hidden="true">↓</span></a><a class="quiet-link" href="mailto:batcontact.help@gmail.com" data-open-contact data-contact-reason="hello">Say hello <span aria-hidden="true">↗</span></a></div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <h3>Multimodality Stock Trading</h3>
-                <p>A multimodal LLM project that reads stock market chart images, combines them with indicators and a text prompt, and gives guidance on the current market situation.</p>
-                <div class="skills">
-                    <span>Python</span>
-                    <span>LLM</span>
-                    <span>Computer Vision</span>
-                    <span>Finance</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Enerep/multimodality-API_stock_trading" target="_blank" class="link">View on GitHub</a>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <h3>Stock Data Analysis</h3>
-                <p>A website where you can get information and data from a stock in few seconds.</p>
-                <div class="skills">
-                    <span>Python</span>
-                    <span>Flask</span>
-                    <span>Matplotlib</span>
-                    <span>yfinance</span>
-                    <span>CSS & JS</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://stock-simple-data.onrender.com" target="_blank" class="link">Visit Website</a>
-                    <a href="https://github.com/Enerep/stock-data-analysis/tree/master" target="_blank" class="link">View on GitHub</a>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <h3>StrikeBook</h3>
-                <p>A personal trade journal for logging stock option trades to CSV, built to keep my own trading records organized and easy to review.</p>
-                <div class="skills">
-                    <span>CSV</span>
-                    <span>Options Trading</span>
-                    <span>Trade Journal</span>
-                    <span>Personal Tool</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Enerep/StrikeBook" target="_blank" class="link">View on GitHub</a>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card">
-                <h3>Ro5 Project</h3>
-                <p>An interactive Rule of Five tool for checking whether a compound is likely to be orally active, using molecular weight, LogP, hydrogen bond donors, and hydrogen bond acceptors.</p>
-                <div class="skills">
-                    <span>Drug Discovery</span>
-                    <span>Chemoinformatics</span>
-                    <span>Web App</span>
-                    <span>Research</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://chiltepin.health.unm.edu/ro5/" target="_blank" class="link">Visit Website</a>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card">
-                <h3>.Human</h3>
-                <p>A hackathon project that earned a Top 8 finish, built as a web experience focused on the .Human concept from prototype to live demo.</p>
-                <div class="skills">
-                    <span>Hackathon</span>
-                    <span>Web App</span>
-                    <span>Prototype</span>
-                    <span>Team Project</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://dothuman.netlify.app" target="_blank" class="link">Visit Website</a>
-                    <a href="https://github.com/Enerep/hackathon-apr9-2026" target="_blank" class="link">View on GitHub</a>
-                </div>
-            </div>
-        </div>
-        <a href="https://github.com/Enerep" target="_blank" class="btn_projects">And Much More on GitHub</a>
-
+            </div></div>
         </section>
-        <section id="certificates" class="placeholder-section">
-            <h2 class="section-title2">Certificates</h2>
-
-
-             <div class="slider-container">
-                <div class="slider-wrapper">
-                    <!-- Certificate 1 -->
-                    <div class="certificate-item">
-                        <div class="certificate-image-wrapper">
-                            <img src="certificates/cert1.png" alt="Certificate 1">
-                        </div>
-                        <p class="certificate-description">This six-course certificate, developed by Google, provided in-demand skills -- including Python, Git, and IT automation.</p>
-                    </div>
-                    <!-- Certificate 2 -->
-                    <div class="certificate-item">
-                        <div class="certificate-image-wrapper">
-                            <img src="certificates/cert2.png" alt="Certificate 1">
-                        </div>
-                        <p class="certificate-description">This course provided a broad introduction to machine learning and statistical pattern recognition. I learnt about both supervised and unsupervised learning as well as learning theory, reinforcement learning and control.</p>
-                    </div>
-                    <!-- Certificate 3 -->
-                    <div class="certificate-item">
-                        <div class="certificate-image-wrapper">
-                            <img src="certificates/cert3.png" alt="Certificate 1">
-                        </div>
-                        <p class="certificate-description">Gained the skills for an entry-level IT job by learning IT support tasks, customer service, troubleshooting, and using systems like Linux, DNS, CLI, and Binary Code.</p>
-                    </div>
-                    <!-- Certificate 4 -->
-                    <div class="certificate-item">
-                        <div class="certificate-image-wrapper">
-                            <img src="certificates/cert4.png" alt="Certificate 1">
-                        </div>
-                        <p class="certificate-description">Passed Java assessment for the Java programming language.</p>
-                    </div>
-                    <!-- Certificate 5 -->
-                    <div class="certificate-item">
-                        <div class="certificate-image-wrapper">
-                            <img src="certificates/cert5.png" alt="Certificate 1">
-                        </div>
-                        <p class="certificate-description">Achieved data science skills using tools like NumPy, Pandas, and other resources from SoloLearn.</p>
-                    </div>
-                    
-                </div>
-                <!-- Slider Navigation -->
-                <button class="slider-arrow prev" aria-label="Previous certificate">&#x2190;</button>
-                <button class="slider-arrow next" aria-label="Next certificate">&#x2192;</button>
-
-                <div class="slider-dots"></div>
+        <section class="work content-width" id="work" tabindex="-1" aria-labelledby="work-title">
+            <div class="work-heading reveal"><h2 id="work-title">Selected work<span>.</span></h2><p>A few personal projects.</p></div>
+            <div class="project-list">
+                <article class="project-row reveal" style="--delay:0ms"><a class="project-link" href="https://github.com/Enerep/multimodality-API_stock_trading" target="_blank" rel="noopener noreferrer"><div class="project-copy"><h3>Multimodal Stock Trading</h3><p>Reading market charts with vision and language models.</p></div><div class="project-end"><span class="project-meta">Python / AI</span><span class="project-arrow" aria-hidden="true">↗</span></div></a></article>
+                <article class="project-row reveal" style="--delay:90ms"><a class="project-link" href="https://github.com/Enerep/App-Contest" target="_blank" rel="noopener noreferrer"><div class="project-copy"><h3>DiceDecide</h3><p>A decision-making app. Second place in a university app contest.</p></div><div class="project-end"><span class="project-meta">Python / Web</span><span class="project-arrow" aria-hidden="true">↗</span></div></a></article>
+                <article class="project-row reveal" style="--delay:180ms"><a class="project-link" href="https://dothuman.netlify.app" target="_blank" rel="noopener noreferrer"><div class="project-copy"><h3>.Human</h3><p>From hackathon idea to live demo. A Top 8 finish.</p></div><div class="project-end"><span class="project-meta">Web / Team project</span><span class="project-arrow" aria-hidden="true">↗</span></div></a></article>
             </div>
-
-            <div class="view-more-container">
-                <a href="https://enerep.github.io/BatCertificate/" target="_blank" class="view-more-btn">View Full List of Certifications</a>
-            </div>
-
+            <a class="line-link more-work reveal" href="https://github.com/Enerep" target="_blank" rel="noopener noreferrer">More on GitHub <span aria-hidden="true">↗</span></a>
         </section>
-        
-
-        <section id="contact" class="placeholder-section">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <div class="terminal-button red"></div>
-                    <div class="terminal-button yellow"></div>
-                    <div class="terminal-button green"></div>
-                </div>
-            </div>
-            <div class="terminal-content">
-            <div class="terminal-line">
-                <span class="terminal-prompt">$</span>
-                <span class="terminal-command">contact</span>
-                <span class="terminal-flag">--info</span>
-            </div>
-            <div class="terminal-title"> Reach out to me!</div>
-            
-            <div class="terminal-line">
-                <span class="terminal-prompt">$</span>
-                <span class="terminal-command">location</span>
-                <span class="terminal-flag">--current</span>
-            </div>
-            <div class="contact-info">
-                <span class="location-icon">📍</span>
-                <span>USA</span>
-            </div>
-                
-            <div class="terminal-line">
-                <span class="terminal-prompt">$</span>
-                <span class="terminal-command">contact</span>
-                <span class="terminal-flag">--email</span>
-            </div>
-            <div class="email-box">batcontact.help@gmail.com</div>
-                
-            <div class="terminal-line">
-                <span class="terminal-prompt">$</span>
-                <span class="terminal-command">resume</span>
-                <span class="terminal-flag">--request</span>
-            </div>
-
-            <button class="download-btn-contact" id="resumeRequestBtn" type="button">Request Resume</button>
-            <p class="resume-message" id="resumeMessage" aria-live="polite">Resume available on request. Contact me at batcontact.help@gmail.com.</p>
-                
-            <div class="terminal-line">
-                <span class="terminal-prompt">$</span>
-                <span class="terminal-command">ls ./social-links</span>
-             </div>
-
-            <div class="social-links">
-                <a href="https://github.com/Enerep" target="_blank" class="social-link">
-                    <svg class="social-icon" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                     </svg>
-                    <div class="social-info">
-                        <div class="social-platform">GitHub</div>
-                        <div class="social-handle">@Enerep</div>
-                    </div>
-                </a>
-                <a href="https://www.linkedin.com/in/bat-art/" target="_blank" class="social-link">
-                    <svg class="social-icon" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    <div class="social-info">
-                        <div class="social-platform">LinkedIn</div>
-                        <div class="social-handle">bat-art</div>
-                    </div>
-                </a>
-                <a href="#" class="social-link">
-                    <svg class="social-icon" viewBox="0 0 24 24">
-                        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
-                    </svg>
-                    <div class="social-info">
-                        <div class="social-platform">X</div>
-                        <div class="social-handle">@</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-        </section>
-        
     </main>
-
-    <script src="script.js?v=20260903"></script>
+    <footer class="contact content-width" id="contact">
+        <div class="contact-top reveal"><p>Have something in mind?</p><a class="hello-link" href="mailto:batcontact.help@gmail.com" data-open-contact data-contact-reason="hello">Say hello<span class="hello-arrow" aria-hidden="true">↗</span><span class="hello-period">.</span></a></div>
+        <div class="footer-bottom"><p>Owner of <a href="https://worldlayer.si" target="_blank" rel="noopener noreferrer">worldlayer.si <span aria-hidden="true">↗</span></a></p><div class="social-links"><a class="quiet-link" href="https://github.com/Enerep" target="_blank" rel="noopener noreferrer">GitHub</a><a class="quiet-link" href="https://www.linkedin.com/in/bat-art/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div><a class="back-to-top quiet-link" href="#intro" aria-label="Back to the top">Back to top <span aria-hidden="true">↑</span></a></div>
+    </footer>
+    <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title" aria-describedby="contact-description">
+        <button class="dialog-close" id="close-contact" type="button" aria-label="Close contact">×</button>
+        <div class="dialog-inner"><h2 id="contact-title">Say hello.</h2><p id="contact-description">An idea, a collaboration, or a good conversation — I’m listening.</p><div class="email-row"><a id="contact-email" href="mailto:batcontact.help@gmail.com">batcontact.help@gmail.com <span aria-hidden="true">↗</span></a><button id="copy-email" type="button" aria-label="Copy email address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></svg></button></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p><div class="dialog-links"><a class="line-link" href="mailto:batcontact.help@gmail.com?subject=R%C3%A9sum%C3%A9%20request">Email for my résumé <span aria-hidden="true">↗</span></a><a class="quiet-link" href="https://www.linkedin.com/in/bat-art/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div></div>
+    </dialog>
 </body>
 </html>
