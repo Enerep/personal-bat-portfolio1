@@ -27,9 +27,7 @@ p, h1, h2, h3 { margin: 0; }
 .skip-link:focus { transform: translateY(0); }
 
 /* The page has two navigation links, then gets out of the way. */
-.site-header { position: absolute; z-index: 10; top: 0; left: 0; width: 100%; height: 98px; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; }
-.wordmark { font-size: 17px; font-weight: 500; letter-spacing: -.055em; }
-.wordmark > span { color: var(--secondary); }
+.site-header { position: absolute; z-index: 10; top: 0; left: 0; width: 100%; height: 98px; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: flex-end; }
 .site-header nav { display: flex; gap: 35px; }
 .quiet-link { font-size: 13px; color: var(--secondary); transition: color .25s; }
 .quiet-link:hover { color: var(--foreground); }
@@ -39,12 +37,16 @@ p, h1, h2, h3 { margin: 0; }
 /* BAT arrives from below the baseline. The name itself provides the visual. */
 .intro-cover { min-height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; padding: 110px var(--gutter) 145px; }
 .hero-name-wrap { width: 100%; display: flex; justify-content: center; }
-.hero-name { font-size: clamp(180px, 49vw, 860px); font-weight: 550; letter-spacing: -.09em; line-height: .92; display: flex; justify-content: center; padding-right: .07em; transform: translate3d(0, var(--name-shift, 0px), 0); opacity: var(--name-opacity, 1); will-change: transform; overflow: hidden; }
-.letter-mask { display: block; overflow: visible; }
-.letter { display: block; }
+.hero-name { font-size: clamp(180px, 49vw, 860px); font-weight: 550; letter-spacing: 0; line-height: .92; display: flex; justify-content: center; padding-right: 0; transform: translate3d(0, var(--name-shift, 0px), 0); opacity: var(--name-opacity, 1); will-change: transform; overflow: hidden; }
+.letter-mask { display: block; overflow: visible; flex-shrink: 0; margin-right: -.09em; }
+.letter-mask:last-child { margin-right: 0; }
+.letter { display: block; letter-spacing: 0; }
 .cover-caption { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 52px; display: flex; align-items: flex-end; justify-content: space-between; }
 .cover-caption p { font-size: 15px; line-height: 1.6; letter-spacing: -.025em; }
-.cover-caption p > span { color: var(--secondary); }
+.cover-caption .domain-ownership { color: var(--secondary); }
+.domain-ownership a { color: var(--foreground); }
+.domain-ownership a > span { display: inline-block; margin-left: 5px; font-size: 13px; transition: transform .4s var(--ease); }
+.domain-ownership a:hover > span { transform: translate(2px, -2px); }
 .scroll-note { display: flex; align-items: center; gap: 34px; font-size: 12px; color: var(--secondary); padding-block: 10px; }
 .direction-arrow { color: var(--foreground); display: inline-block; font-size: 26px; line-height: 1; transition: transform .5s var(--ease); }
 .scroll-note:hover .direction-arrow { transform: translateX(8px); }
@@ -54,7 +56,14 @@ p, h1, h2, h3 { margin: 0; }
 .intro-copy h2 { font-weight: 400; font-size: clamp(42px, 6.4vw, 100px); line-height: 1.1; letter-spacing: -.065em; }
 .intro-copy h2 > span { color: var(--muted); }
 .intro-statement { font-size: clamp(19px, 2vw, 28px); line-height: 1.5; letter-spacing: -.035em; margin-top: 42px; }
-.intro-personal { font-size: 15px; line-height: 1.85; color: var(--secondary); margin-top: 16px; max-width: 56ch; }
+.intro-statement a { text-decoration: underline; text-decoration-color: #686867; text-underline-offset: .15em; transition: text-decoration-color .25s; }
+.intro-statement a:hover { text-decoration-color: var(--foreground); }
+.intro-highlights { font-size: 15px; line-height: 1.85; color: var(--secondary); margin-top: 15px; }
+.intro-highlights strong { color: var(--foreground); font-weight: 500; }
+.intro-highlights a { color: var(--foreground); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: #686867; }
+.intro-highlights a:hover { text-decoration-color: var(--foreground); }
+.intro-highlights a > span { font-size: 12px; }
+.intro-personal, .intro-ventures { font-size: 15px; line-height: 1.85; color: var(--secondary); margin-top: 12px; max-width: 64ch; }
 .intro-links { display: flex; align-items: center; gap: 38px; margin-top: 38px; }
 .line-link { font-size: 13px; display: inline-flex; align-items: center; gap: 24px; padding-bottom: 9px; position: relative; }
 .line-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: var(--secondary); transform-origin: left; transition: transform .5s var(--ease), background .3s; }
@@ -144,8 +153,10 @@ html.dialog-open, html.dialog-open body { overflow: hidden; }
     .hero-name { font-size: min(46vw, 87svh); }
     .cover-caption { bottom: 30px; }
     .intro-copy h2 { font-size: clamp(48px, 6vw, 78px); }
-    .intro-statement { margin-top: 25px; }
-    .intro-links { margin-top: 26px; }
+    .has-horizontal-intro .intro-details { padding-block: 60px; }
+    .intro-statement { margin-top: 20px; }
+    .intro-highlights, .intro-personal, .intro-ventures { margin-top: 10px; }
+    .intro-links { margin-top: 24px; }
 }
 @media (max-width: 899px) {
     .site-header { height: 85px; }
@@ -155,7 +166,7 @@ html.dialog-open, html.dialog-open body { overflow: hidden; }
     .intro-details { padding-top: 60px; padding-bottom: 70px; }
     .intro-copy h2 { font-size: clamp(40px, 7vw, 62px); }
     .intro-statement { margin-top: 30px; }
-    .intro-personal { font-size: 14px; }
+    .intro-highlights, .intro-personal, .intro-ventures { font-size: 14px; }
     .intro-links { margin-top: 29px; }
     .desktop-scroll-label { display: none; }
     .mobile-scroll-label { display: inline; }
@@ -169,11 +180,10 @@ html.dialog-open, html.dialog-open body { overflow: hidden; }
     :root { --gutter: 25px; }
     html { scroll-padding-top: 35px; }
     .site-header { height: 78px; }
-    .wordmark { font-size: 15px; }
     .site-header nav { gap: 24px; }
     .quiet-link { font-size: 12px; }
     .intro-cover { min-height: 83svh; padding-bottom: 125px; }
-    .hero-name { font-size: 48.5vw; letter-spacing: -.095em; }
+    .hero-name { font-size: 46vw; }
     .cover-caption { bottom: 35px; align-items: center; }
     .cover-caption p { font-size: 12px; }
     .scroll-note { font-size: 10px; gap: 17px; }
@@ -181,7 +191,7 @@ html.dialog-open, html.dialog-open body { overflow: hidden; }
     .intro-details { padding-top: 50px; padding-bottom: 60px; }
     .intro-copy h2 { font-size: clamp(33px, 8.8vw, 51px); line-height: 1.16; }
     .intro-statement { font-size: 19px; line-height: 1.6; margin-top: 26px; max-width: 25ch; }
-    .intro-personal { font-size: 13px; line-height: 1.9; margin-top: 17px; }
+    .intro-highlights, .intro-personal, .intro-ventures { font-size: 13px; line-height: 1.9; margin-top: 13px; }
     .desktop-break { display: none; }
     .intro-links { gap: 28px; margin-top: 30px; }
     .line-link { font-size: 12px; gap: 18px; }
@@ -226,3 +236,26 @@ html.dialog-open, html.dialog-open body { overflow: hidden; }
 .reduced-motion .hero-name { transform: none; opacity: 1; will-change: auto; }
 .reduced-motion .letter, .reduced-motion .hero-enter, .reduced-motion .reveal { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
 .reduced-motion .contact-dialog, .reduced-motion .dialog-inner { animation: none !important; }
+
+/* The original shifting colour and glow, kept on BAT alone. */
+.hero-name {
+    filter: drop-shadow(0 0 15px #9391f34d) drop-shadow(0 0 38px #d77bdc33);
+}
+.letter {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(110deg, #8eabff, #c99afa 22%, #ffa3bb 40%, #ffd0a0 58%, #b0e5df 77%, #8eabff);
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.letter-mask:nth-child(2) .letter { --color-delay: -3s; background-position: 50% 50%; }
+.letter-mask:nth-child(3) .letter { --color-delay: -6s; background-position: 100% 50%; }
+.is-loaded:not(.reduced-motion) .letter {
+    animation: letter-up 1.3s var(--delay, 0ms) var(--ease) both, bat-shimmer 8s var(--color-delay, 0s) ease-in-out infinite alternate;
+}
+@keyframes bat-shimmer {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+}
