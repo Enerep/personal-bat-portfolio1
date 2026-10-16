@@ -23,8 +23,25 @@
     let introTravel = 0;
     let lastShift = '';
     let lastOpacity = '';
+    let entranceTimer = 0;
+    let rippleTimer = 0;
+    const introLeadIn = 0.12;
+    const introSettleAt = 0.88;
 
     root.classList.add('js');
+    const finishOpeningIntro = () => {
+      window.clearTimeout(entranceTimer);
+      window.clearTimeout(rippleTimer);
+      root.classList.add('is-loaded');
+      root.classList.remove('is-opening-intro');
+    };
+    if (reducedMotion.matches) {
+      finishOpeningIntro();
+    } else {
+      root.classList.add('is-opening-intro');
+      entranceTimer = window.setTimeout(() => root.classList.add('is-loaded'), 450);
+      rippleTimer = window.setTimeout(() => root.classList.remove('is-opening-intro'), 1700);
+    }
     // The earlier design's manual motion setting does not apply to this version.
     try { window.localStorage.removeItem('bat-motion-paused'); } catch (_) { /* Storage is optional. */ }
 
@@ -62,12 +79,22 @@
       revealEverything();
     }
 
+    const settledIntroProgress = (progress) => {
+      const value = Math.max(0, Math.min(1, (progress - introLeadIn) / (introSettleAt - introLeadIn)));
+      const ramp = 0.15;
+      const steadyRange = 1 - ramp;
+      // Short quadratic ramps soften the start and finish; the middle follows native scroll steadily.
+      if (value < ramp) return (value * value) / (2 * ramp * steadyRange);
+      if (value > 1 - ramp) return 1 - ((1 - value) ** 2) / (2 * ramp * steadyRange);
+      return (value - ramp / 2) / steadyRange;
+    };
     const updateParallax = () => {
       scrollFrame = 0;
       if (reducedMotion.matches) return;
       const distance = Math.max(0, Math.min(heroHeight, window.scrollY - heroTop));
-      const intensity = mobileMotion.matches ? 0.5 : 1;
-      const progress = Math.max(0, Math.min(1, (window.scrollY - heroTop) / introRange));
+      const intensity = mobileMotion.matches ? 0.7 : 1;
+      const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - heroTop) / introRange));
+      const progress = horizontal ? settledIntroProgress(scrollProgress) : scrollProgress;
       if (horizontal && introTrack) {
         introTrack.style.transform = `translate3d(${(-progress * introTravel).toFixed(2)}px, 0, 0)`;
       }
@@ -95,13 +122,25 @@
       const previousMode = horizontal;
       horizontal = Boolean(introTrack && introSticky && horizontalIntro.matches && !reducedMotion.matches);
       root.classList.toggle('has-horizontal-intro', horizontal);
+      if (horizontal && introDetails) {
+        const copy = introDetails.querySelector('.intro-copy');
+        const style = window.getComputedStyle(introDetails);
+        const availableHeight = window.innerHeight - (parseFloat(style.paddingTop) || 0) - (parseFloat(style.paddingBottom) || 0);
+        // Text zoom must never trap content inside the pinned viewport.
+        if (copy && Math.ceil(copy.getBoundingClientRect().height) > availableHeight + 1) {
+          horizontal = false;
+          root.classList.remove('has-horizontal-intro');
+        }
+      }
       if (!horizontal) introTrack?.style.removeProperty('transform');
       heroTop = hero.getBoundingClientRect().top + window.scrollY;
       heroHeight = Math.max(1, hero.offsetHeight);
       viewportHeight = window.innerHeight;
       introRange = Math.max(1, heroHeight - viewportHeight);
       introTravel = Math.max(0, (introTrack?.scrollWidth || 0) - window.innerWidth);
-      if (preservePosition && measured && previousMode !== horizontal && oldScroll >= oldTop) {
+      const horizontalGeometryChanged = previousMode && horizontal
+        && (oldRange !== introRange || oldHeight !== heroHeight || oldTop !== heroTop);
+      if (preservePosition && measured && (previousMode !== horizontal || horizontalGeometryChanged) && oldScroll >= oldTop) {
         const top = oldScroll <= oldTop + oldRange
           ? heroTop + Math.max(0, Math.min(1, (oldScroll - oldTop) / oldRange)) * introRange
           : oldScroll + heroHeight - oldHeight;
@@ -113,6 +152,7 @@
     const applyMotionPreference = () => {
       root.classList.toggle('reduced-motion', reducedMotion.matches);
       if (reducedMotion.matches) {
+        finishOpeningIntro();
         if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
         scrollFrame = 0;
         heroName?.style.removeProperty('--name-shift');
@@ -133,24 +173,9 @@
     applyMotionPreference();
     measureHero();
 
-    // Wait briefly for fonts, then start once. Font loading can never hide the intro indefinitely.
-    let entranceQueued = false;
-    const beginEntrance = () => {
-      if (entranceQueued) return;
-      entranceQueued = true;
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => root.classList.add('is-loaded'));
-      });
-    };
-    const entranceFallback = window.setTimeout(beginEntrance, 180);
+    // Font readiness refreshes measurements without delaying the water-drop entrance.
     if (document.fonts?.ready) {
-      document.fonts.ready.then(() => {
-        window.clearTimeout(entranceFallback);
-        measureHero();
-        beginEntrance();
-      }, beginEntrance);
-    } else {
-      beginEntrance();
+      document.fonts.ready.then(() => measureHero(true), () => {});
     }
 
     const resetIntroOffset = () => {
@@ -161,7 +186,7 @@
     const scrollToIntroSide = (details, smooth = false) => {
       resetIntroOffset();
       window.scrollTo({
-        top: heroTop + (details ? introRange : 0),
+        top: heroTop + (details ? introRange * introSettleAt : 0),
         left: 0,
         behavior: smooth && !reducedMotion.matches ? 'smooth' : 'instant'
       });
@@ -215,6 +240,27 @@
     };
     normalizeLegacyHash();
     window.addEventListener('hashchange', normalizeLegacyHash);
+
+    const experience = document.querySelector('#experience');
+    const experienceToggle = document.querySelector('#experience-toggle');
+    const experienceDetails = document.querySelector('#experience-details');
+    if (experience && experienceToggle && experienceDetails) {
+      const setExperienceOpen = (open) => {
+        if (!open && experienceDetails.contains(document.activeElement)) {
+          experienceToggle.focus({ preventScroll: true });
+        }
+        experienceToggle.setAttribute('aria-expanded', String(open));
+        experienceDetails.setAttribute('aria-hidden', String(!open));
+        experienceDetails.inert = !open;
+        experience.classList.toggle('is-open', open);
+      };
+      // The HTML remains expanded without JavaScript; enhancement supplies the disclosure.
+      experience.classList.add('is-enhanced');
+      setExperienceOpen(false);
+      experienceToggle.addEventListener('click', () => {
+        setExperienceOpen(experienceToggle.getAttribute('aria-expanded') !== 'true');
+      });
+    }
 
     const dialog = document.querySelector('#contact-dialog');
     const openLinks = [...document.querySelectorAll('[data-open-contact]')];
