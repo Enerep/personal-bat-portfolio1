@@ -11,8 +11,12 @@
     const horizontalIntro = window.matchMedia('(min-width: 900px) and (min-height: 600px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const mobileMotion = window.matchMedia('(max-width: 767px), (pointer: coarse)');
+    const hoverPointer = window.matchMedia('(hover: hover) and (pointer: fine)');
     const reveals = [...document.querySelectorAll('.reveal')];
+    const introCopy = introDetails?.querySelector('.intro-copy');
+    const introChildren = introCopy ? [...introCopy.children] : [];
     let revealObserver = null;
+    let revealMode = '';
     let scrollFrame = 0;
     let heroTop = 0;
     let heroHeight = 1;
@@ -50,34 +54,46 @@
       else if (media.addListener) media.addListener(listener);
     };
     const revealEverything = () => {
-      reveals.forEach((element) => element.classList.add('is-visible'));
+      [...reveals, ...introChildren].forEach((element) => element.classList.add('is-visible'));
       revealObserver?.disconnect();
     };
-
-    if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const configureReveals = () => {
+      const mode = `${horizontal}:${reducedMotion.matches}`;
+      if (mode === revealMode) return;
+      revealMode = mode;
+      revealObserver?.disconnect();
+      introChildren.forEach((element) => element.classList.toggle('mobile-reveal', !horizontal));
+      if (!horizontal) introCopy?.classList.add('is-visible');
+      if (!('IntersectionObserver' in window) || reducedMotion.matches) {
+        revealEverything();
+        return;
+      }
       try {
-        revealObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          });
-        }, { threshold: 0.12 });
-        reveals.forEach((element) => {
+        if (!revealObserver) {
+          revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        }
+        const targets = horizontal
+          ? reveals
+          : [...reveals.filter((element) => element !== introCopy), ...introChildren];
+        targets.forEach((element) => {
           const delay = Number(element.dataset.revealDelay);
           if (Number.isFinite(delay) && delay >= 0 && element.hasAttribute('data-reveal-delay')) {
             element.style.setProperty('--delay', `${Math.min(delay, 1000)}ms`);
           }
-          revealObserver.observe(element);
+          if (!element.classList.contains('is-visible')) revealObserver.observe(element);
         });
         root.classList.add('can-reveal');
       } catch (_) {
         root.classList.remove('can-reveal');
         revealEverything();
       }
-    } else {
-      revealEverything();
-    }
+    };
 
     const settledIntroProgress = (progress) => {
       const value = Math.max(0, Math.min(1, (progress - introLeadIn) / (introSettleAt - introLeadIn)));
@@ -88,8 +104,14 @@
       if (value > 1 - ramp) return 1 - ((1 - value) ** 2) / (2 * ramp * steadyRange);
       return (value - ramp / 2) / steadyRange;
     };
+    const updatePageProgress = () => {
+      const range = Math.max(1, root.scrollHeight - window.innerHeight);
+      const progress = Math.max(0, Math.min(1, window.scrollY / range));
+      root.style.setProperty('--page-progress', progress.toFixed(4));
+    };
     const updateParallax = () => {
       scrollFrame = 0;
+      updatePageProgress();
       if (reducedMotion.matches) return;
       const distance = Math.max(0, Math.min(heroHeight, window.scrollY - heroTop));
       const intensity = mobileMotion.matches ? 0.7 : 1;
@@ -111,10 +133,15 @@
       lastOpacity = opacity;
     };
     const requestParallax = () => {
-      if (!scrollFrame && !reducedMotion.matches) scrollFrame = window.requestAnimationFrame(updateParallax);
+      if (reducedMotion.matches) updatePageProgress();
+      else if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updateParallax);
     };
     const measureHero = (preservePosition = false) => {
-      if (!hero) return;
+      updatePageProgress();
+      if (!hero) {
+        configureReveals();
+        return;
+      }
       const oldHeight = heroHeight;
       const oldTop = heroTop;
       const oldRange = Math.max(1, oldHeight - viewportHeight);
@@ -147,6 +174,7 @@
         window.scrollTo({ top: Math.max(0, top), left: 0, behavior: 'instant' });
       }
       measured = true;
+      configureReveals();
       requestParallax();
     };
     const applyMotionPreference = () => {
@@ -245,6 +273,53 @@
     const experienceToggle = document.querySelector('#experience-toggle');
     const experienceDetails = document.querySelector('#experience-details');
     if (experience && experienceToggle && experienceDetails) {
+      let scrambleExperience = () => {};
+      const label = experienceToggle.querySelector('.experience-label');
+      if (label) {
+        const original = label.dataset.text || label.textContent || 'Experience';
+        const frames = ['Ex▓er!▧nce', 'Ex▒er!▩nce', 'Exp3ri▧nce', 'Exper!ence'];
+        let active = false;
+        let scrambleTimers = [];
+        const writeLabel = (text) => {
+          label.textContent = text;
+          label.dataset.text = text;
+        };
+        const resetScramble = () => {
+          scrambleTimers.forEach((timer) => window.clearTimeout(timer));
+          scrambleTimers = [];
+          active = false;
+          writeLabel(original);
+          experienceToggle.classList.remove('is-glitching');
+        };
+        scrambleExperience = () => {
+          if (reducedMotion.matches) {
+            resetScramble();
+            return;
+          }
+          if (active) return;
+          active = true;
+          experienceToggle.classList.add('is-glitching');
+          writeLabel(frames[0]);
+          frames.slice(1).forEach((text, index) => {
+            scrambleTimers.push(window.setTimeout(() => writeLabel(text), (index + 1) * 90));
+          });
+          scrambleTimers.push(window.setTimeout(resetScramble, 440));
+        };
+        experienceToggle.addEventListener('pointerenter', (event) => {
+          if (hoverPointer.matches && event.pointerType !== 'touch') scrambleExperience();
+        });
+        experienceToggle.addEventListener('focus', () => {
+          if (experienceToggle.matches(':focus-visible')) scrambleExperience();
+        });
+        experienceToggle.addEventListener('blur', resetScramble);
+        listenMedia(reducedMotion, () => {
+          if (reducedMotion.matches) resetScramble();
+        });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) resetScramble();
+        });
+        window.addEventListener('pagehide', resetScramble);
+      }
       const setExperienceOpen = (open) => {
         if (!open && experienceDetails.contains(document.activeElement)) {
           experienceToggle.focus({ preventScroll: true });
@@ -253,13 +328,16 @@
         experienceDetails.setAttribute('aria-hidden', String(!open));
         experienceDetails.inert = !open;
         experience.classList.toggle('is-open', open);
+        requestParallax();
       };
       // The HTML remains expanded without JavaScript; enhancement supplies the disclosure.
       experience.classList.add('is-enhanced');
       setExperienceOpen(false);
       experienceToggle.addEventListener('click', () => {
         setExperienceOpen(experienceToggle.getAttribute('aria-expanded') !== 'true');
+        scrambleExperience();
       });
+      experienceDetails.addEventListener('transitionend', requestParallax);
     }
 
     const dialog = document.querySelector('#contact-dialog');
