@@ -1,27 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
-  <title id="title">Bat-Ochir — Portfolio</title>
-  <desc id="description">Glowing multicolour BAT lettering. Software builder. AI enthusiast. Options trader.</desc>
-  <defs>
-    <linearGradient id="letter-colour" x1="0" y1="0" x2="1" y2="0.3">
-      <stop offset="0" stop-color="#c99afa"/>
-      <stop offset=".22" stop-color="#ffa3bb"/>
-      <stop offset=".43" stop-color="#ffd0a0"/>
-      <stop offset=".64" stop-color="#b0e5df"/>
-      <stop offset=".82" stop-color="#8eabff"/>
-      <stop offset="1" stop-color="#c99afa"/>
-    </linearGradient>
-    <filter id="glow" x="-20%" y="-30%" width="140%" height="160%" color-interpolation-filters="sRGB">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="18" result="wide-blur"/>
-      <feFlood flood-color="#b284dc" flood-opacity=".28" result="wide-colour"/>
-      <feComposite in="wide-colour" in2="wide-blur" operator="in" result="wide-glow"/>
-      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="close-blur"/>
-      <feComponentTransfer in="close-blur" result="close-glow"><feFuncA type="linear" slope=".25"/></feComponentTransfer>
-      <feMerge><feMergeNode in="wide-glow"/><feMergeNode in="close-glow"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-  <rect width="1200" height="630" fill="#111112"/>
-  <text x="64" y="65" fill="#efefeb" font-family="Arial, Helvetica, sans-serif" font-size="26" letter-spacing="-1">Bat-Ochir</text>
-  <text x="1136" y="63" text-anchor="end" fill="#a3a3a0" font-family="Arial, Helvetica, sans-serif" font-size="16">Portfolio ↗</text>
-  <text x="48" y="505" fill="url(#letter-colour)" filter="url(#glow)" font-family="Arial, Helvetica, sans-serif" font-size="560" font-weight="700" letter-spacing="-40">BAT</text>
-  <text x="64" y="576" fill="#b8b8b5" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="-.35">Software builder. AI enthusiast. Options trader.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+<linearGradient id="sky" x2="0" y2="1"><stop stop-color="#181e19"/><stop offset=".7" stop-color="#5a4737"/><stop offset="1" stop-color="#1b241b"/></linearGradient>
+<linearGradient id="chrome" x1=".1" y1="0" x2=".8" y2="1"><stop stop-color="#26332d"/><stop offset=".14" stop-color="#a8aaa0"/><stop offset=".21" stop-color="#f0e5cb"/><stop offset=".3" stop-color="#3c4940"/><stop offset=".6" stop-color="#535c4d"/><stop offset=".8" stop-color="#dfaf7c"/><stop offset=".89" stop-color="#d6d9cb"/><stop offset="1" stop-color="#344036"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#e4a15e" stop-opacity=".2"/><stop offset="1" stop-color="#e4a15e" stop-opacity="0"/></radialGradient>
+<linearGradient id="shade"><stop stop-color="#111c14" stop-opacity=".7"/><stop offset="1" stop-color="#111c14" stop-opacity="0"/></linearGradient>
+</defs>
+<path fill="url(#sky)" d="M0 0h1200v630H0z"/><ellipse cx="850" cy="310" rx="350" ry="310" fill="url(#glow)"/>
+<path d="M0 396L120 363L202 382L280 370L400 406L565 391L685 416L850 401L995 408L1096 385L1200 396V630H0Z" fill="#172119" opacity=".75"/>
+<ellipse cx="884" cy="293" rx="211" ry="231" transform="rotate(19 884 293)" stroke="url(#chrome)" stroke-width="40" fill="none"/>
+<ellipse cx="884" cy="293" rx="191" ry="212" transform="rotate(19 884 293)" stroke="#e3b68b" stroke-opacity=".5" stroke-width="2" fill="none"/>
+<ellipse cx="884" cy="641" rx="211" ry="92" fill="none" stroke="#a39678" stroke-opacity=".1" stroke-width="27"/>
+<path fill="url(#shade)" d="M0 0h1200v630H0z"/>
+<text x="65" y="67" fill="#eeede3" font-family="Arial,sans-serif" font-size="35" font-weight="600" letter-spacing="-4">b.</text><text x="120" y="53" fill="#eeede3" font-family="Arial,sans-serif" font-size="11" font-weight="600" letter-spacing="2">BAT-OCHIR</text><text x="120" y="70" fill="#b4b9a7" font-family="Arial,sans-serif" font-size="6.5" letter-spacing="1.5">A CURIOUS MIND IN MOTION</text>
+<text x="65" y="194" fill="#bcc4af" font-family="Arial,sans-serif" font-size="9" letter-spacing="2">FOUNDER. BUILDER. TRADER.</text>
+<text x="57" y="310" fill="#f1eee6" font-family="Arial,sans-serif" font-size="112" letter-spacing="-8">One human.</text>
+<text x="57" y="426" fill="#f1eee6" font-family="Arial,sans-serif" font-size="112" letter-spacing="-8"><tspan font-family="Georgia,serif" font-style="italic" letter-spacing="-6">Many tabs.</tspan></text>
+<text x="65" y="498" fill="#c5ccb9" font-family="Arial,sans-serif" font-size="15">I build products, follow rabbit holes, and occasionally go outside.</text>
+<path d="M65 561H1135" stroke="#d2dbc0" stroke-opacity=".2"/><text x="65" y="588" fill="#b2bda4" font-family="Arial,sans-serif" font-size="8" letter-spacing="2">A WORLD IN MOTION</text><text x="1135" y="588" text-anchor="end" fill="#b2bda4" font-family="Arial,sans-serif" font-size="8" letter-spacing="2">PORTFOLIO / 2026</text>
 </svg>

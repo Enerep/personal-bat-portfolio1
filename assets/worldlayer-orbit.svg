@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="700" viewBox="0 0 800 700" fill="none">
+  <defs>
+    <radialGradient id="wl-atmosphere"><stop stop-color="#df7c48" stop-opacity=".15"/><stop offset=".62" stop-color="#a55c38" stop-opacity=".045"/><stop offset="1" stop-color="#a55c38" stop-opacity="0"/></radialGradient>
+    <radialGradient id="wl-sphere" cx=".31" cy=".22" r=".83"><stop stop-color="#d0c9b8" stop-opacity=".24"/><stop offset=".5" stop-color="#68685e" stop-opacity=".12"/><stop offset=".83" stop-color="#151914" stop-opacity=".65"/><stop offset="1" stop-color="#070b09" stop-opacity=".9"/></radialGradient>
+    <linearGradient id="wl-chrome" x1="207" y1="154" x2="592" y2="508" gradientUnits="userSpaceOnUse"><stop stop-color="#faf6e7"/><stop offset=".26" stop-color="#b9baac"/><stop offset=".48" stop-color="#777f73"/><stop offset=".7" stop-color="#d1d4bf"/><stop offset="1" stop-color="#f4cfaa"/></linearGradient>
+    <linearGradient id="wl-wire" x1="282" y1="168" x2="519" y2="522" gradientUnits="userSpaceOnUse"><stop stop-color="#f7f2e5" stop-opacity=".8"/><stop offset=".55" stop-color="#c0c8b3" stop-opacity=".22"/><stop offset="1" stop-color="#dfc2a2" stop-opacity=".48"/></linearGradient>
+    <linearGradient id="wl-orbit" x1="91" y1="451" x2="707" y2="237" gradientUnits="userSpaceOnUse"><stop stop-color="#9b502b"/><stop offset=".28" stop-color="#fa9f64"/><stop offset=".54" stop-color="#f6ce95"/><stop offset=".78" stop-color="#f0874a"/><stop offset="1" stop-color="#a2502d"/></linearGradient>
+    <linearGradient id="wl-front" x1="102" y1="464" x2="700" y2="280" gradientUnits="userSpaceOnUse"><stop stop-color="#d96b37"/><stop offset=".24" stop-color="#ffd0a2"/><stop offset=".58" stop-color="#f2a366"/><stop offset="1" stop-color="#ffbb7f"/></linearGradient>
+    <radialGradient id="wl-bead" cx=".33" cy=".23"><stop stop-color="#fff0cb"/><stop offset=".25" stop-color="#e9b18a"/><stop offset=".59" stop-color="#ad663c"/><stop offset="1" stop-color="#38261c"/></radialGradient>
+    <radialGradient id="wl-shadow"><stop stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <filter id="wl-glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="wl-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter>
+    <clipPath id="wl-disc"><circle cx="400" cy="335" r="206"/></clipPath>
+  </defs>
+  <ellipse cx="403" cy="351" rx="371" ry="304" fill="url(#wl-atmosphere)"/>
+  <ellipse cx="402" cy="603" rx="230" ry="28" fill="url(#wl-shadow)"/>
+  <g opacity=".23" stroke="#a8b09e" stroke-width=".65">
+    <path d="M78 590H720M108 600H689M172 611H626"/>
+    <path d="M168 573L101 621M282 574L251 621M405 575V621M523 574L554 621M633 573L700 621"/>
+  </g>
+  <g transform="rotate(-23 400 335)">
+    <ellipse cx="400" cy="335" rx="339" ry="80" stroke="#d57945" stroke-width="8" opacity=".16" filter="url(#wl-glow)"/>
+    <ellipse cx="400" cy="335" rx="339" ry="80" stroke="url(#wl-orbit)" stroke-width="3.2"/>
+    <ellipse cx="400" cy="335" rx="348" ry="89" stroke="#e1a071" stroke-width=".5" opacity=".25"/>
+  </g>
+  <circle cx="400" cy="335" r="206" fill="url(#wl-sphere)"/>
+  <g clip-path="url(#wl-disc)">
+    <g transform="rotate(14 400 335)" stroke="url(#wl-wire)">
+      <ellipse cx="400" cy="335" rx="26" ry="206" stroke-width="1.15"/>
+      <ellipse cx="400" cy="335" rx="78" ry="206" stroke-width="1.1"/>
+      <ellipse cx="400" cy="335" rx="133" ry="206" stroke-width="1.1"/>
+      <ellipse cx="400" cy="335" rx="178" ry="206" stroke-width="1.1"/>
+      <path d="M195 335H605" stroke-width="1.15"/>
+      <ellipse cx="400" cy="335" rx="206" ry="34" stroke-width="1.1"/>
+      <ellipse cx="400" cy="261" rx="192" ry="31" stroke-width="1.1"/>
+      <ellipse cx="400" cy="192" rx="149" ry="23" stroke-width="1.1"/>
+      <ellipse cx="400" cy="151" rx="84" ry="12" stroke-width="1.1"/>
+      <ellipse cx="400" cy="410" rx="192" ry="31" stroke-width="1.1"/>
+      <ellipse cx="400" cy="477" rx="151" ry="23" stroke-width="1.1"/>
+      <ellipse cx="400" cy="520" rx="87" ry="12" stroke-width="1.1"/>
+      <path d="M400 128V542" stroke-width=".8" opacity=".65"/>
+    </g>
+    <path d="M214 393C276 356 333 307 390 221C412 190 432 160 445 132" stroke="#e9eee0" stroke-width="1.7" opacity=".65"/>
+    <path d="M230 453C333 430 446 372 580 236" stroke="#b4c3a7" stroke-width=".85" opacity=".27"/>
+    <path d="M211 267C303 259 408 273 597 352" stroke="#f2b080" stroke-width=".8" opacity=".28"/>
+  </g>
+  <circle cx="400" cy="335" r="206" stroke="url(#wl-chrome)" stroke-width="1.75" opacity=".83"/>
+  <circle cx="400" cy="335" r="211" stroke="#dfd7be" stroke-width=".55" opacity=".16"/>
+  <path d="M214 247C237 192 292 148 353 134" stroke="#f6f2de" stroke-width="3" stroke-linecap="round" opacity=".6" filter="url(#wl-soft)"/>
+  <g transform="rotate(-23 400 335)">
+    <path d="M61 335C61 379.183 212.774 415 400 415C587.226 415 739 379.183 739 335" stroke="#e67d43" stroke-width="9" opacity=".23" filter="url(#wl-glow)"/>
+    <path d="M61 335C61 379.183 212.774 415 400 415C587.226 415 739 379.183 739 335" stroke="#251e17" stroke-width="7"/>
+    <path d="M61 335C61 379.183 212.774 415 400 415C587.226 415 739 379.183 739 335" stroke="url(#wl-front)" stroke-width="3.8"/>
+    <path d="M61 335C61 379.183 212.774 415 400 415C587.226 415 739 379.183 739 335" stroke="#ffdeb1" stroke-width=".8" opacity=".85"/>
+  </g>
+  <circle cx="207" cy="458" r="19" fill="#e99a5f" opacity=".25" filter="url(#wl-glow)"/>
+  <circle cx="207" cy="458" r="12" fill="url(#wl-bead)"/>
+  <circle cx="549" cy="164" r="5" fill="#e8e6d0"/>
+  <circle cx="549" cy="164" r="11" stroke="#dcdccb" stroke-width=".7" opacity=".35"/>
+  <g stroke="#d2d5bc" stroke-width=".8" opacity=".5">
+    <path d="M135 179H155M145 169V189M640 489H660M650 479V499"/>
+    <path d="M284 113L293 99M518 569L525 582"/>
+  </g>
+  <path d="M517 568L581 573L622 553" stroke="#d6d0b8" stroke-width=".7" opacity=".3"/>
+  <circle cx="517" cy="568" r="2" fill="#dedac4" opacity=".7"/>
+</svg>
