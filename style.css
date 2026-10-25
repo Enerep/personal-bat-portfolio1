@@ -53,3 +53,28 @@ html{scroll-padding-top:110px}
 @media(max-width:700px){.learning-links{margin-top:60px}.learning-links>.eyebrow{font-size:8px;margin-bottom:22px}.learning-link{grid-template-columns:18px 1fr 36px;gap:11px;padding:25px 0;min-height:110px}.learning-index{font-size:7px;padding-top:8px}.learning-title{font-size:clamp(25px,5.8vw,38px);line-height:1.25}.learning-count{font-size:58px;margin-right:8px;display:block;margin-bottom:9px}.learning-arrow{width:36px;height:36px;font-size:20px}.market-favorite strong{font-size:56px}.market-favorite>span{font-size:6px;max-width:63px}.market-favorite{margin-bottom:20px}}
 @media(max-width:360px){.learning-title{font-size:25px}.learning-link{grid-template-columns:14px 1fr 32px;gap:9px}.learning-arrow{width:32px;height:32px;font-size:19px}}
 .proof-art{overflow:clip}
+
+/* A personal hello, an obvious next step, and a gently ringing invitation. */
+.hero-title.hero-title--personal{font-size:clamp(72px,9.1vw,154px)}
+.hero-smile{color:var(--lime);white-space:nowrap}
+.scroll-down{display:inline-flex;align-items:center;gap:16px;min-height:52px;margin-top:27px;font-size:11px;letter-spacing:.04em;color:#d8decd}
+.scroll-disc{display:block;position:relative;width:48px;height:48px;border:1px solid #c5d0b65c;border-radius:50%;overflow:hidden;transition:background .3s,border-color .3s}
+.scroll-arrows{position:absolute;inset:0 0 auto;display:flex;flex-direction:column;transform:translateY(-48px);animation:scroll-downward 2.8s var(--ease) infinite}
+.scroll-arrows>span{display:flex;align-items:center;justify-content:center;flex:0 0 48px;font-size:24px;line-height:1}
+.scroll-down:hover .scroll-disc{background:#d7ef8012;border-color:var(--lime)}
+.hero-bottom>p{margin-left:0}
+.ring-phone{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;width:78px;height:78px;margin:46px auto 0;border:1px solid #c5d9a95c;border-radius:50%;color:var(--lime);background:#c5e19a0b;transition:background .35s,color .35s}
+.ring-phone:hover{background:var(--lime);color:#192116}
+.phone-handset{display:block;width:31px;height:31px;transform-origin:50% 65%;animation:phone-ring 5s ease-in-out infinite}
+.phone-wave{position:absolute;z-index:-1;inset:-1px;border:1px solid #c5d9a959;border-radius:50%;pointer-events:none;opacity:0;animation:phone-echo 5s ease-out infinite}
+.phone-wave--echo{animation-delay:.3s}
+.contact .ring-phone+h2{margin-top:35px}
+@keyframes scroll-downward{0%,15%{transform:translateY(-48px)}65%,100%{transform:translateY(0)}}
+@keyframes phone-ring{0%,25%,100%{transform:rotate(0)}3%,11%,19%{transform:rotate(-15deg)}7%,15%,23%{transform:rotate(15deg)}}
+@keyframes phone-echo{0%{transform:scale(.98);opacity:0}5%{opacity:.5}40%,100%{transform:scale(1.8);opacity:0}}
+@media(max-width:700px){.hero-title.hero-title--personal{font-size:clamp(50px,12.8vw,90px)}.scroll-down{font-size:10px;margin-top:24px;gap:13px}.hero-bottom>p{text-align:left}.ring-phone{width:68px;height:68px;margin-top:38px}.phone-handset{width:29px;height:29px}.contact .ring-phone+h2{margin-top:30px}}
+@media(prefers-reduced-motion:reduce){.phone-wave{display:none}.scroll-arrows{transform:translateY(-48px)}}
+/* Keep the hero caption clear of the fixed controls on short screens. */
+.hero-bottom{bottom:max(68px,calc(828px - 100svh))}
+@media(max-width:700px){.hero-bottom{bottom:max(78px,calc(828px - 100svh))}}
+@media(max-width:360px){.hero-bottom{bottom:max(78px,calc(778px - 100svh))}}
