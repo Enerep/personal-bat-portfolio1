@@ -22,6 +22,8 @@ Open `http://127.0.0.1:4173`.
 - `index.html`: portfolio content, project links, navigation, and contact dialogs.
 - `style.css`: responsive layouts, typography, and motion treatments.
 - `script.js`: native-scroll integration, motion preferences, navigation, and interactive previews.
+- `arrival.js` and `assets/arrival.css`: a short, skippable black-screen intro with ripples and a digital bat. Reduced motion skips it; a timeout always releases the page.
+- `assets/achievements.css`: prismatic achievement and exploration-link typography with subtle shimmer.
 - `world.js`: procedural WebGL landscape. Rendering stops after inputs settle, with a lower resolution budget for smaller devices.
 - `assets/`: vector project artwork, favicon, and social preview.
 - `certificates/`: personal certificate images retained from the earlier portfolio.

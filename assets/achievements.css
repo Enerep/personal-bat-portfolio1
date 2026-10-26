@@ -1,0 +1,158 @@
+/* A prism of color for the moments worth celebrating. */
+.achievements .achievement,
+.learning-links {
+  --award-phase: 0s;
+  --award-spectrum: linear-gradient(
+    110deg,
+    #ffe7a3 0%,
+    #ffb8a4 15%,
+    #e7baff 30%,
+    #b6dcff 46%,
+    #baf1dc 60%,
+    #e7f7ae 74%,
+    #fff6d9 84%,
+    #ffe7a3 100%
+  );
+}
+
+.achievements .achievement,
+.learning-links .learning-link {
+  position: relative;
+  isolation: isolate;
+}
+
+.achievements .achievement:nth-child(2) { --award-phase: -2.5s; }
+.achievements .achievement:nth-child(3) { --award-phase: -5s; }
+.learning-links .learning-link:nth-of-type(2) { --award-phase: -2.5s; }
+.learning-links .learning-link:nth-of-type(3) { --award-phase: -5s; }
+
+.achievements .achievement::before,
+.learning-links .learning-link::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, #ffe7a300, #ffd19e 12%, #e2b8ff 38%, #b4e6ed 65%, #e0f4b7 86%, #e0f4b700);
+  opacity: .82;
+  pointer-events: none;
+}
+
+.achievements .achievement::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 20px;
+  left: -15px;
+  width: min(100%, 320px);
+  height: 175px;
+  background: radial-gradient(ellipse at 32% 45%, #d6b3ff0e, #e6d59b07 40%, transparent 72%);
+  pointer-events: none;
+}
+
+.achievements .achievement-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #c4c5b0;
+}
+
+.achievements .achievement h3 {
+  color: #f1dfb4;
+  filter: drop-shadow(0 0 17px #d1baff20);
+}
+
+.achievements .achievement h3 em { color: inherit; }
+
+.learning-links .learning-title {
+  color: #f1dfb4;
+  filter: drop-shadow(0 0 17px #d1baff20);
+}
+
+.learning-links .learning-title em,
+.learning-links .learning-count { color: inherit; }
+
+/* The fallback above stays legible in browsers without clipped text backgrounds. */
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .achievements .achievement h3,
+  .achievements .achievement h3 em,
+  .learning-links .learning-title,
+  .learning-links .learning-title em,
+  .learning-links .learning-count {
+    background-image: var(--award-spectrum);
+    background-size: 240% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: award-prism 10s ease-in-out infinite alternate;
+    animation-delay: var(--award-phase);
+  }
+}
+
+.achievements .award-spark {
+  display: inline-block;
+  flex-shrink: 0;
+  color: #f1db9d;
+  font-size: 15px;
+  line-height: 1;
+  text-shadow: 0 0 12px #ead1a240;
+  transform-origin: center;
+  animation: award-sparkle 6s ease-in-out infinite;
+  animation-delay: var(--award-phase);
+}
+
+@keyframes award-prism {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@keyframes award-sparkle {
+  0%, 55%, 100% { opacity: .7; transform: scale(.87) rotate(0deg); }
+  68% { opacity: 1; transform: scale(1.07) rotate(12deg); }
+  81% { opacity: .82; transform: scale(.94) rotate(-5deg); }
+}
+
+/* Honor both the page control and the device preference; the color stays. */
+.motion-paused .achievements .achievement h3,
+.motion-paused .achievements .achievement h3 em,
+.motion-paused .achievements .award-spark,
+.motion-paused .learning-links .learning-title,
+.motion-paused .learning-links .learning-title em,
+.motion-paused .learning-links .learning-count {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievements .achievement h3,
+  .achievements .achievement h3 em,
+  .achievements .award-spark,
+  .learning-links .learning-title,
+  .learning-links .learning-title em,
+  .learning-links .learning-count {
+    animation: none !important;
+  }
+  .achievements .achievement h3,
+  .achievements .achievement h3 em,
+  .learning-links .learning-title,
+  .learning-links .learning-title em,
+  .learning-links .learning-count { background-position: 40% 50%; }
+  .achievements .award-spark { opacity: 1; transform: none; }
+}
+
+@media (forced-colors: active) {
+  .achievements .achievement h3,
+  .achievements .achievement h3 em,
+  .learning-links .learning-title,
+  .learning-links .learning-title em,
+  .learning-links .learning-count {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+    filter: none;
+  }
+  .achievements .achievement::before,
+  .achievements .achievement::after,
+  .learning-links .learning-link::before { display: none; }
+  .achievements .award-spark { color: CanvasText; text-shadow: none; }
+}
