@@ -30,7 +30,7 @@ Open `http://127.0.0.1:4173`.
 - `assets/`: vector project artwork, favicon, and social preview.
 - `certificates/`: personal certificate images retained from the earlier portfolio.
 
-RoamRep leads the selected work, followed by worldlayer.si, Discovery Galaxy, and ProofPatch. The ProofPatch interaction is an illustrative demonstration; it does not run project checks in the browser.
+RoamRep leads the selected work as an AI discovery platform combining algorithmic recommendations and dynamic restaurant websites, followed by worldlayer.si, Discovery Galaxy, and ProofPatch. The ProofPatch interaction is an illustrative demonstration; it does not run project checks in the browser.
 
 The entrance links directly to projects or the earlier highlights section. Discovery Galaxy's XERJ recognition links to its source listing, which showed selection and licence clearance when checked on October 28, 2026.
 
