@@ -24,10 +24,14 @@ Open `http://127.0.0.1:4173`.
 - `script.js`: native-scroll integration, motion preferences, navigation, and interactive previews.
 - `arrival.js` and `assets/arrival.css`: a short, skippable black-screen intro with ripples and a digital bat. Reduced motion skips it; a timeout always releases the page.
 - `assets/achievements.css`: prismatic achievement and exploration-link typography with subtle shimmer.
+- `assets/wayfinding.css`: the two entrance routes and the early honors, learning, and experiments section.
+- `assets/recognition.css`: the linked XERJ Corpus Hub selection credit for Discovery Galaxy.
 - `world.js`: procedural WebGL landscape. Rendering stops after inputs settle, with a lower resolution budget for smaller devices.
 - `assets/`: vector project artwork, favicon, and social preview.
 - `certificates/`: personal certificate images retained from the earlier portfolio.
 
 RoamRep leads the selected work, followed by worldlayer.si, Discovery Galaxy, and ProofPatch. The ProofPatch interaction is an illustrative demonstration; it does not run project checks in the browser.
+
+The entrance links directly to projects or the earlier highlights section. Discovery Galaxy's XERJ recognition links to its source listing, which showed selection and licence clearance when checked on October 28, 2026.
 
 The website respects the device's reduced-motion preference and provides a pause control. Content remains available without WebGL. Typography has system fallbacks if Google Fonts cannot load.

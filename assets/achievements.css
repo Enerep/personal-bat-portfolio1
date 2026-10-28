@@ -23,6 +23,7 @@
 
 .achievements .achievement:nth-child(2) { --award-phase: -2.5s; }
 .achievements .achievement:nth-child(3) { --award-phase: -5s; }
+.achievements .achievement:nth-child(4) { --award-phase: -7.5s; }
 .learning-links .learning-link:nth-of-type(2) { --award-phase: -2.5s; }
 .learning-links .learning-link:nth-of-type(3) { --award-phase: -5s; }
 

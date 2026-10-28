@@ -1,0 +1,125 @@
+/* A source-linked credit, kept distinct from the project actions. */
+.corpus-credit {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 0 28px;
+  padding: 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background:
+    linear-gradient(115deg, #242a21ed, #171e19eb) padding-box,
+    linear-gradient(120deg, #e6c29a70, #ccb7ef63 45%, #a9cdb44d) border-box;
+  color: var(--paper, #f1eee6);
+  text-decoration: none;
+  transition: transform .35s var(--ease, ease), box-shadow .35s;
+}
+
+.corpus-credit::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 22px;
+  right: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e8c7a9, #cbb4f1, #b6dec5, transparent);
+  opacity: .65;
+  pointer-events: none;
+}
+
+.corpus-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: #e8d7b4;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.corpus-mark::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border: 1px solid #e6c99b38;
+  border-radius: 9px;
+  transform: rotate(45deg);
+}
+
+.corpus-credit-copy { display: block; min-width: 0; }
+.corpus-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #bdc8b3;
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: .12em;
+}
+
+.corpus-credit-copy strong {
+  display: block;
+  color: #f1e6d3;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+}
+
+.corpus-credit-copy > small:last-child {
+  display: block;
+  margin-top: 6px;
+  color: #aebba6;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.corpus-arrow {
+  color: #d2ddc4;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform .35s var(--ease, ease);
+}
+
+.corpus-credit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px #070c0729;
+}
+.corpus-credit:hover .corpus-arrow { transform: translate(2px, -2px); }
+.corpus-credit:focus-visible { outline: 2px solid var(--lime, #d7ef80); outline-offset: 5px; }
+
+@media (max-width: 420px) {
+  .corpus-credit {
+    grid-template-columns: 28px minmax(0, 1fr) 12px;
+    align-items: start;
+    gap: 12px;
+    padding: 17px 14px;
+  }
+  .corpus-mark { width: 28px; height: 28px; font-size: 19px; margin-top: 15px; }
+  .corpus-credit-copy strong { font-size: 14px; }
+  .corpus-label { font-size: 7px; letter-spacing: .08em; }
+  .corpus-arrow { font-size: 16px; margin-top: 26px; }
+}
+
+.motion-paused .corpus-credit,
+.motion-paused .corpus-arrow { transition: none; }
+.motion-paused .corpus-credit:hover,
+.motion-paused .corpus-credit:hover .corpus-arrow { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .corpus-credit, .corpus-arrow { transition: none; }
+  .corpus-credit:hover, .corpus-credit:hover .corpus-arrow { transform: none; }
+}
+
+@media (forced-colors: active) {
+  .corpus-credit { background: Canvas; border-color: LinkText; box-shadow: none; }
+  .corpus-credit::before { display: none; }
+  .corpus-mark, .corpus-label, .corpus-credit-copy strong,
+  .corpus-credit-copy > small:last-child, .corpus-arrow { color: LinkText; }
+  .corpus-mark::before { border-color: LinkText; }
+  .corpus-credit:focus-visible { outline-color: Highlight; }
+}
